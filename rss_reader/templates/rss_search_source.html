@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="mdui-container" style="margin-top: 150px;text-align: center">
+    <div class="mdui-row" style="min-height: 500px">
+
+        <form action="{{content_dict.source_url}}" method="post">
+            <h2>{{content_dict.handle_name}}</h2>
+            <p>
+                inquire name：<input type="text" name="source_url_name" id="source_url_name" size="50"/>
+            </p>
+            <input type="submit" value="提交"/>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

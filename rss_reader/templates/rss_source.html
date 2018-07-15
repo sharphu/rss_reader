@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <title>{{content_dict.handle_name}}</title>
+</head>
+
+<body>
+<div class="mdui-container" style="margin-top: 150px;text-align: center">
+    <div class="mdui-row" style="min-height: 500px">
+        <form action="{{content_dict.source_url}}" method="post">
+            <h2>{{content_dict.handle_name}}</h2>
+            <p>
+                url：<input type="text" name="source_url" id="source_url" size="15"/>
+            </p>
+            <p>
+                img：<input type="text" name="source_img" id="source_img" size="15"/>
+            </p>
+            <p>
+                name：<input type="text" name="source_name" id="source_name" size="15"/>
+            </p>
+            <p>
+                tags：<input type="text" name="source_tags" id="source_tags" size="15">
+            </p>
+            <input type="submit" value="提交"/>
+        </form>
+    </div>
+</div>
+
+</body>
+
+{% endblock %}

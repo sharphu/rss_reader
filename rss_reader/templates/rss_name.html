@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="mdui-container">
+    <div class="mdui-row">
+        {% for dt in data%}
+        <div class="mdui-row">
+            <div class="mdui-col-md-6 mdui-col-offset-md-3"
+                 style="padding-top: 10px;
+                 padding-bottom: 10px;
+                 background-color: #F5F5F5;
+                 border: 1px solid #cac1e9;
+                 margin-top: 10px;
+                 margin-bottom: 10px;">
+                <div>
+                    <h3 class="post-title" itemprop="name">
+                        <a class="post-title-link" href="{{dt.link}}">{{dt.title}}</a>
+                    </h3>
+                </div>
+                <br>
+                <div class="post-meta">更新于：{{dt.published}}</div>
+                <br>
+                <a href="{{dt.link}}" target="_blank">全文阅读</a><br><br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
