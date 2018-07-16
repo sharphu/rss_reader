@@ -5,7 +5,7 @@ import os
 from flask import Flask
 from rss_reader.config import Config
 from rss_reader.models import db
-from rss_reader.views import bp_api, bp_home, bp_rss
+from rss_reader.views import bp_api, bp_home, bp_rss, bp_traf
 
 
 def create_app():
@@ -14,6 +14,7 @@ def create_app():
     app.register_blueprint(bp_api)
     app.register_blueprint(bp_home)
     app.register_blueprint(bp_rss)
+    app.register_blueprint(bp_traf)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
     app.config['SECRET_KEY'] = 'you - will - never - guess'
     db.init_app(app)

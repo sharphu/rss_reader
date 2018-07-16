@@ -3,3 +3,4 @@
 from .bp_api import bp_api
 from .bp_home import bp_home
 from .bp_rss import bp_rss
+from .bp_traf import bp_traf

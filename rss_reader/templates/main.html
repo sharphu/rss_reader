@@ -26,19 +26,11 @@
                 <form action="/api/search" method="post">
                     <input class="mdui-textfield-input" type="text" name="source_url_name" placeholder="Search"/>
                 </form>
-                <!--<input class="mdui-textfield-input" type="text" placeholder="Search"/>-->
                 <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
                         class="mdui-icon material-icons">close</i>
                 </button>
             </div>
         </div>
-        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">share</i></a>-->
-
-
-        <!--<a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">-->
-        <!--<i class="mdui-icon material-icons">share</i>-->
-        <!--</a>-->
-
 
         <div class="bdsharebuttonbox">
             <button class="mdui-btn mdui-btn-icon" mdui-menu="{target: '#example-1'}"><i
@@ -51,25 +43,6 @@
                 <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
                 <a href="#" class="bds_douban" data-cmd="douban" title="豆瓣网"></a>
                 <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-
-                <!--<li class="mdui-menu-item">-->
-                <!--<a href="#" class="bds_more" data-cmd="more"></a>-->
-                <!--</li>-->
-                <!--<li class="mdui-menu-item" disabled>-->
-                <!--<a href="#" class="bds_sqq" data-cmd="sqq" title="QQ好友"></a>-->
-                <!--</li>-->
-                <!--<li class="mdui-menu-item">-->
-                <!--<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>-->
-                <!--</li>-->
-                <!--<li class="mdui-menu-item">-->
-                <!--<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>-->
-                <!--</li>-->
-                <!--<li class="mdui-menu-item">-->
-                <!--<a href="#" class="bds_douban" data-cmd="douban" title="豆瓣网"></a>-->
-                <!--</li>-->
-                <!--<li class="mdui-menu-item">-->
-                <!--<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>-->
-                <!--</li>-->
             </ul>
         </div>
         <script>window._bd_share_config = {
@@ -84,28 +57,6 @@
         };
         with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
-
-        <!--<div class="bdsharebuttonbox">-->
-        <!--<a href="#" class="bds_more" data-cmd="more"></a>-->
-        <!--<a href="#" class="bds_sqq" data-cmd="sqq" title="QQ好友"></a>-->
-        <!--<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>-->
-        <!--<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>-->
-        <!--<a href="#" class="bds_douban" data-cmd="douban" title="豆瓣网"></a>-->
-        <!--<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>-->
-        <!--</div>-->
-        <!--<script>window._bd_share_config = {-->
-        <!--"common": {-->
-        <!--"bdSnsKey": {},-->
-        <!--"bdText": "",-->
-        <!--"bdMini": "2",-->
-        <!--"bdPic": "",-->
-        <!--"bdStyle": "0",-->
-        <!--"bdSize": "16"-->
-        <!--}, "share": {}-->
-        <!--};-->
-        <!--with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>-->
-
-
     </div>
 </header>
 
@@ -113,21 +64,7 @@
 <div class="mdui-drawer mdui-drawer-close" id="content-drawer">
     <ul class="mdui-list">
         <div class="mdui-container"><i class="mdui-list-item-icon mdui-icon material-icons">cast</i>
-            <button class="mdui-btn mdui-color-theme-accent" mdui-menu="{target: '#example-3'}">rss源</button>
-            <ul class="mdui-menu" id="example-3">
-                <li class="mdui-menu-item">
-                    <a href="/rss/sou/add_source" class="mdui-ripple">增加源</a>
-                </li>
-                <li class="mdui-menu-item">
-                    <a href="/rss/sou/delete_source" class="mdui-ripple">删除源</a>
-                </li>
-                <li class="mdui-menu-item">
-                    <a href="/rss/sou/alter_source" class="mdui-ripple">修改源</a>
-                </li>
-                <!--<li class="mdui-menu-item">-->
-                    <!--<a href="/rss/sou/search_source" class="mdui-ripple">查询源</a>-->
-                <!--</li>-->
-            </ul>
+            <a href="/traf/add" class="mdui-btn mdui-text-color-theme-accent mdui-ripple">增加源</a>
         </div>
 
         <div class="mdui-container"><i class="mdui-list-item-icon mdui-icon material-icons">brightness_high</i>
@@ -139,45 +76,6 @@
 {% endblock%}
 
 <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.1/js/mdui.min.js"></script>
-
-
-<!--<div class="global-share" id="global-share">-->
-<!--<div class="tit">分享到：</div>-->
-<!--<ul class="reset share-icons">-->
-<!--<li>-->
-<!--<a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">-->
-<!--<i class="icon icon-weibo"></i>-->
-<!--</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">-->
-<!--<i class="icon icon-weixin"></i>-->
-<!--</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">-->
-<!--<i class="icon icon-qq"></i>-->
-<!--</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">-->
-<!--<i class="icon icon-facebook"></i>-->
-<!--</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">-->
-<!--<i class="icon icon-twitter"></i>-->
-<!--</a>-->
-<!--</li>-->
-<!--<li>-->
-<!--<a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">-->
-<!--豆-->
-<!--</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-
-<!--<script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>-->
 
 </body>
 </html>

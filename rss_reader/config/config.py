@@ -6,8 +6,6 @@ import os
 class Config:
     DEBUG = os.environ.get('DEBUG',False)
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-    # CSRF_ENABLED = True
-    # SECRET_KEY = 'you - will - never - guess'
 
 
     RSS_DICT = {

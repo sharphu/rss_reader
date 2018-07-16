@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{content_dict.handle_name}}</title>
+    <title>{{handle_name}}</title>
 </head>
 
 <body>
 <div class="mdui-container" style="margin-top: 150px;text-align: center">
     <div class="mdui-row" style="min-height: 500px">
-        <form action="{{content_dict.source_url}}" method="post">
-            <h2>{{content_dict.handle_name}}</h2>
+        <form action="http://127.0.0.1:5000/api/{{handle_name}}/{{source_id}}" method="post">
+            <h2>{{handle_name}}</h2>
             <p>
                 url：<input type="text" name="source_url" id="source_url" size="15"/>
             </p>
@@ -21,7 +21,13 @@
                 name：<input type="text" name="source_name" id="source_name" size="15"/>
             </p>
             <p>
+                sort：<input type="text" name="source_sort" id="source_sort" size="15">
+            </p>
+            <p>
                 tags：<input type="text" name="source_tags" id="source_tags" size="15">
+            </p>
+            <p>
+                desc：<input type="text" name="source_desc" id="source_desc" size="15">
             </p>
             <input type="submit" value="提交"/>
         </form>

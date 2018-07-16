@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="mdui-container" id="content-main">
+    <div class="mdui-container">
+        <div class="mdui-row" style="min-height: 500px">
+            {% for each in sources %}
+            <div class="mdui-col-sm-6 mdui-col-md-4" style="margin-top: 25px">
+                <a href="http://127.0.0.1:5000/rss/{{each['id']}}">
+                    <div class="mdui-card">
+                        <div class="mdui-card-media">
+                            <img src="{{url_for('static',filename='images/')}}{{each['img']}}"/>
+                            <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
+                                <div class="mdui-card-primary">
+                                    <div class="mdui-ca mdui-typo-display-1 rd-primary-title">
+                                        <font size="5">{{each['name']}}——<font size="4">{{each['sort']}}#{{each['tags']}}</font></font><br>
+                                        <font size="3">{{each['desc']}}</font>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdui-container" style="text-align: center">
+                        <a href="/api/delete/{{each['id']}}" class="mdui-btn mdui-btn-raised mdui-text-color-black mdui-ripple">删除源</a>
+                        <a href="/traf/alter/{{each['id']}}" class="mdui-btn mdui-btn-raised mdui-text-color-black mdui-ripple">修改源</a>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
