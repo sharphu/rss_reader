@@ -21,7 +21,7 @@
         <div class="mdui-col-md-4 mdui-col-offset-md-4">
             <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
                 <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
-                    class="mdui-icon material-icons">search</i>
+                        class="mdui-icon material-icons">search</i>
                 </button>
                 <form action="/api/search" method="post">
                     <input class="mdui-textfield-input" type="text" name="source_url_name" placeholder="Search"/>
@@ -67,9 +67,48 @@
             <a href="/traf/add" class="mdui-btn mdui-text-color-theme-accent mdui-ripple">增加源</a>
         </div>
 
-        <div class="mdui-container"><i class="mdui-list-item-icon mdui-icon material-icons">brightness_high</i>
-            <button class="mdui-btn mdui-color-theme-accent">设置</button>
+        <div class="mdui-container"><i class="mdui-icon material-icons">loyalty</i>
+            <button class="mdui-btn mdui-color-theme-accent" mdui-menu="{target: '#example-2'}">tags</button>
+            <ul class="mdui-menu" id="example-2">
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Python" class="mdui-ripple">Python</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Blog" class="mdui-ripple">Blog</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Moves" class="mdui-ripple">Moves</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Phone" class="mdui-ripple">Phone</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Digital" class="mdui-ripple">Digital</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Innovation" class="mdui-ripple">Innovation</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Article" class="mdui-ripple">Article</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Consumption" class="mdui-ripple">Consumption</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/Downloads" class="mdui-ripple">Downloads</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/News" class="mdui-ripple">News</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a href="/traf/search/iPhone" class="mdui-ripple">iPhone</a>
+                </li>
+            </ul>
         </div>
+
+        <!--<div class="mdui-container"><i class="mdui-list-item-icon mdui-icon material-icons">brightness_high</i>-->
+        <!--<button class="mdui-btn mdui-color-theme-accent">设置</button>-->
+        <!--</div>-->
     </ul>
 </div>
 {% block content %}

@@ -31,7 +31,7 @@ def index(nums=1):
     res_start = RssSource.query.filter_by(source_id=start).first()
     res_stop = RssSource.query.filter_by(source_id=stop).first()
     if res_start == None:
-        return render_template('404.html')
+        return render_template('feedback.html',img_name = '404.jpg')
     elif res_stop == None:
         while (1):
             res = RssSource.query.filter_by(source_id=start).first()

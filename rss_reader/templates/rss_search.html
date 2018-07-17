@@ -4,7 +4,7 @@
     <div class="mdui-container">
         <div class="mdui-row" style="min-height: 500px">
             {% for each in sources %}
-            <div class="mdui-col-sm-6 mdui-col-md-4" style="margin-top: 25px">
+            <div class="mdui-col-sm-6 mdui-col-md-4 mdui-col-offset-md-4" style="margin-top: 25px">
                 <a href="http://127.0.0.1:5000/rss/{{each['id']}}">
                     <div class="mdui-card">
                         <div class="mdui-card-media">
@@ -20,8 +20,10 @@
                         </div>
                     </div>
                     <div class="mdui-container" style="text-align: center">
-                        <a href="/api/delete/{{each['id']}}" class="mdui-btn mdui-btn-raised mdui-text-color-black mdui-ripple">删除源</a>
-                        <a href="/traf/alter/{{each['id']}}" class="mdui-btn mdui-btn-raised mdui-text-color-black mdui-ripple">修改源</a>
+                        <a href="/api/delete/{{each['id']}}"
+                           class="mdui-btn mdui-btn-raised mdui-text-color-black mdui-ripple">删除源</a>
+                        <a href="/traf/alter/{{each['id']}}"
+                           class="mdui-btn mdui-btn-raised mdui-text-color-black mdui-ripple">修改源</a>
                     </div>
                 </a>
             </div>
@@ -29,7 +31,6 @@
         </div>
     </div>
 </div>
-
 
 
 {% endblock %}
