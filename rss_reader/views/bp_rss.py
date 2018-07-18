@@ -5,7 +5,7 @@ import os
 
 
 from feedparser import parse
-from flask import Blueprint, request, url_for
+from flask import Blueprint, request, url_for, json
 from flask import render_template
 from expire import Settings
 from expire import RedisCache,cached,CacheSetting
@@ -38,31 +38,51 @@ def index(source_id):
                          "link": article["link"],
                          "published": article["published"].split('T', 1)[0] or article["published"].split('+', 1)[0],
                          })
-        re_data = {res.source_name:data}
-        # key = res.source_name
-        # value = data
-        # # if redisbase.cached_by_redis(key):
-        # #     result = redisbase.cached_by_redis(key)
-        # # else:
-        # #     result = redisbase.parse_cache(url=key,value=value)
-        # # print(result)
+
+        key = res.source_id
+        value = data
+
+
+        result = redisbase.parse_cache(url=key, dynamic_key=key, params=value)
+        # return render_template('rss_detail.html', data=result['1'])
+        print(result)
+        print(redisbase.cached_by_redis(key))
+        return json.dumps(result)
+
+        # return render_template('rss_detail.html', data=redisbase.cached_by_redis(key))
+        # return redisbase.cached_by_redis(key)
+
+
+
+        # if redisbase.cached_by_redis(key):
+        #     result = redisbase.cached_by_redis(key)
+        # else:
+        #     result = redisbase.parse_cache(url=key, dynamic_key=key, params=value)
+        # print(result)
+        # print(redisbase.cached_by_redis(key))
         #
+        # return render_template('rss_detail.html', data=result)
+
         # result = redisbase.parse_cache(url=key, value=value)
         # print(result)
         # print(redisbase.cached_by_redis(key))
 
-        key = 'expire'
-
-        # set
-        result = redisbase.parse_cache(url=key, dynamic_key=key)
-        print(result)
+        # key = 'expire'
+        # value = {
+        #     '234': 'tatatat',
+        #     '1234': 'huhuhu'
+        # }
+        #
+        # # set
+        # result = redisbase.parse_cache(url=key, dynamic_key = key, params=value)
+        # print(result)
 
         # get
-        print(redisbase.cached_by_redis(key))
+        # print(redisbase.cached_by_redis(key))
 
     else:
-        result = {'info': 'source_id is null'}
-    return render_template('rss_detail.html', data=result)
+        return 'source_id is null'
+
 
 
 

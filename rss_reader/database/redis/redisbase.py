@@ -23,7 +23,7 @@ def parse_cache(url,params=None,**kwargs):
         '123':'hahah',
         '1234':'huhuhu'
     }
-    return "{0}:{1}".format(url,data)
+    return "{0}:{1}".format(url,params)
 
 
 def cached_by_redis(key):
