@@ -40,7 +40,6 @@ def index(nums=1):
                 sources.append({'id': res.source_id,
                                 'img': res.source_img,
                                 'name': res.source_name,
-                                'sort': res.source_sort,
                                 'tags': res.source_tags,
                                 'desc': res.source_desc,})
             else:
@@ -52,7 +51,6 @@ def index(nums=1):
             sources.append({'id': res.source_id,
                             'img': res.source_img,
                             'name': res.source_name,
-                            'sort': res.source_sort,
                             'tags': res.source_tags,
                             'desc': res.source_desc, })
         return render_template('home.html', sources=sources, pages=pages)

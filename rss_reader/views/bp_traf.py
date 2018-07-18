@@ -2,6 +2,7 @@
 # _*_ coding:utf-8 _*_
 
 import os
+import random
 
 
 from flask import Blueprint, request, url_for,redirect
@@ -23,13 +24,14 @@ bp_traf = Blueprint(
 
 @bp_traf.route('/add', methods=['GET', 'POST'])
 def add_source():
-    return render_template('rss_add_alter.html',handle_name='add')
+    img_nums=random.randint(1,30)
+    return render_template('rss_add_alter.html',handle_name='add',id_img=img_nums)
 
 
 
 @bp_traf.route('/alter/<source_id>', methods=['GET','POST'])
 def alter_source(source_id):
-    return render_template('rss_add_alter.html',handle_name='alter',source_id=source_id)
+    return render_template('rss_add_alter.html',handle_name='alter',id_img=source_id)
 
 
 @bp_traf.route('/search/<tags_sort>')

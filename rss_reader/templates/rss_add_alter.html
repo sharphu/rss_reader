@@ -7,27 +7,25 @@
 </head>
 
 <body>
-<div class="mdui-container" style="margin-top: 150px;text-align: center">
+<div class="mdui-container" style="margin-top: 100px;text-align: center">
     <div class="mdui-row" style="min-height: 500px">
-        <form action="http://127.0.0.1:5000/api/{{handle_name}}/{{source_id}}" method="post">
+        <form action="http://127.0.0.1:5000/api/{{handle_name}}/{{id_img}}" method="post">
             <h2>{{handle_name}}</h2>
-            <p>
-                url：<input type="text" name="source_url" id="source_url" size="15"/>
+            <p class="mdui-textfield mdui-textfield-floating-label mdui-center" style="width: 50%">
+                <label class="mdui-textfield-label">url</label>
+                <input class="mdui-textfield-input" type="text" name="source_url"/>
             </p>
-            <p>
-                img：<input type="text" name="source_img" id="source_img" size="15"/>
+            <p class="mdui-textfield mdui-textfield-floating-label mdui-center" style="width: 50%">
+                <label class="mdui-textfield-label">name</label>
+                <input class="mdui-textfield-input" type="text" name="source_name"/>
             </p>
-            <p>
-                name：<input type="text" name="source_name" id="source_name" size="15"/>
+            <p class="mdui-textfield mdui-textfield-floating-label mdui-center" style="width: 50%">
+                <label class="mdui-textfield-label">tags</label>
+                <input class="mdui-textfield-input" type="text" name="source_tags"/>
             </p>
-            <p>
-                sort：<input type="text" name="source_sort" id="source_sort" size="15">
-            </p>
-            <p>
-                tags：<input type="text" name="source_tags" id="source_tags" size="15">
-            </p>
-            <p>
-                desc：<input type="text" name="source_desc" id="source_desc" size="15">
+            <p class="mdui-textfield mdui-textfield-floating-label mdui-center" style="width: 50%">
+                <label class="mdui-textfield-label">desc</label>
+                <input class="mdui-textfield-input" type="text" name="source_desc"/>
             </p>
             <input type="submit" value="提交"/>
         </form>

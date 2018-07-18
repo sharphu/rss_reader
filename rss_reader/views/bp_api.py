@@ -20,13 +20,11 @@ bp_api = Blueprint(
 
 
 
-@bp_api.route('/add/', methods=['GET', 'POST'])
-def api_add():
+@bp_api.route('/add/<id_img>', methods=['GET', 'POST'])
+def api_add(id_img):
     if request.method == 'POST':
         source_url = request.form.get("source_url")
-        source_img = request.form.get("source_img")
         source_name = request.form.get("source_name")
-        source_sort = request.form.get("source_sort")
         source_tags = request.form.get("source_tags")
         source_desc = request.form.get("source_desc")
 
@@ -34,9 +32,8 @@ def api_add():
 
         if res == None:
             data = RssSource(source_url=source_url,
-                             source_img=source_img,
+                             source_img=str(id_img)+'.jpg',
                              source_name=source_name,
-                             source_sort=source_sort,
                              source_tags=source_tags,
                              source_desc=source_desc,)
             db.session.add(data)
@@ -62,23 +59,20 @@ def api_delete(source_id):
             # return ('抱歉，此源不存在，无法删除！')
 
 
-@bp_api.route('/alter/<source_id>', methods=['GET', 'POST'])
-def api_alter(source_id):
+@bp_api.route('/alter/<id_img>', methods=['GET', 'POST'])
+def api_alter(id_img):
     if request.method == 'POST':
         source_url = request.form.get("source_url")
-        source_img = request.form.get("source_img")
         source_name = request.form.get("source_name")
-        source_sort = request.form.get("source_sort")
         source_tags = request.form.get("source_tags")
         source_desc = request.form.get("source_desc")
 
-        res = RssSource.query.filter_by(source_id=source_id).first()
+        res = RssSource.query.filter_by(source_id=id_img).first()
 
         if res != None:
             res.source_url = source_url
-            res.source_img = source_img
+            res.source_img = res.source_img
             res.source_name = source_name
-            res.source_sort = source_sort
             res.source_tags = source_tags
             res.source_desc = source_desc
             db.session.commit()
@@ -95,19 +89,15 @@ def api_search():
         source_url_name = request.form.get("source_url_name")
 
         res = RssSource.query.filter(or_(RssSource.source_name==source_url_name,
-                                         RssSource.source_sort==source_url_name,
                                          RssSource.source_tags==source_url_name)).all()
 
         sources = []
-
-        print(res)
 
         if len(res) != 0:
             for rs in res:
                 sources.append({'id': rs.source_id,
                                 'img': rs.source_img,
                                 'name': rs.source_name,
-                                'sort': rs.source_sort,
                                 'tags': rs.source_tags,
                                 'desc': rs.source_desc, })
             return render_template('rss_search.html', sources=sources)
