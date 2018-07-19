@@ -3,9 +3,9 @@
 
 import os
 
-from flask import Blueprint, render_template, json
+from flask import Blueprint, render_template
 from rss_reader.config import Config
-from rss_reader.models import db, RssSource
+from rss_reader.models import RssSource
 
 bp_home = Blueprint(
     __name__,

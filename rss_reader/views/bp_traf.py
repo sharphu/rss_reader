@@ -5,12 +5,12 @@ import os
 import random
 
 
-from flask import Blueprint, request, url_for,redirect
+from flask import Blueprint
 from flask import render_template
 from sqlalchemy import or_
 
 from rss_reader.config import Config
-from rss_reader.models import db,RssSource
+from rss_reader.models import RssSource
 
 bp_traf = Blueprint(
     __name__,
