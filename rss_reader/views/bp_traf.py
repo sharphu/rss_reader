@@ -34,11 +34,10 @@ def alter_source(source_id):
     return render_template('rss_add_alter.html',handle_name='alter',id_img=source_id)
 
 
-@bp_traf.route('/search/<tags_sort>')
-def search_source(tags_sort):
-    if tags_sort:
-        res = RssSource.query.filter(or_(RssSource.source_sort==tags_sort,
-                                         RssSource.source_tags==tags_sort)).all()
+@bp_traf.route('/search/<tags>')
+def search_source(tags):
+    if tags:
+        res = RssSource.query.filter(or_(RssSource.source_tags==tags)).all()
 
         sources = []
 
@@ -47,7 +46,6 @@ def search_source(tags_sort):
                 sources.append({'id': rs.source_id,
                                 'img': rs.source_img,
                                 'name': rs.source_name,
-                                'sort': rs.source_sort,
                                 'tags': rs.source_tags,
                                 'desc': rs.source_desc, })
             return render_template('rss_search.html', sources=sources)
