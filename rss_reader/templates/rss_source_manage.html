@@ -1,0 +1,54 @@
+{% extends "main.html" %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <title>{{handle_name}}</title>
+    <style>
+        td a{
+            text-decoration: none;
+            color: #2b657e;
+        }
+    </style>
+</head>
+
+<body>
+<div class="mdui-container" style="margin-top: 100px;text-align: center">
+    <div class="mdui-row" style="min-height: 500px">
+        {% if sources %}
+        <table class="mdui-table mdui-table-hoverable" style="margin-bottom: 50px;">
+            <thead>
+            <tr align="center">
+                <th>#</th>
+                <th>url</th>
+                <th>name</th>
+                <th>tags</th>
+                <th>description</th>
+                <th>operate</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for item in sources%}
+            <tr>
+                <td>{{item.source_id}}</td>
+                <td>
+                    <a href="/rss/{{item.source_id}}" target="_blank">查看 <strong>{{item.source_name}}</strong> 源</a>
+                </td>
+                <td>{{item.source_name}}</td>
+                <td>{{item.source_tags}}</td>
+                <td>{{item.source_desc}}</td>
+                <td><a href="#">修改</a>|<a href="#">删除</a></td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+        {% else %}
+        <center style="height: 50px;line-height: 50px">暂无</center>
+        {% endif %}
+
+    </div>
+</div>
+
+</body>
+
+{% endblock %}

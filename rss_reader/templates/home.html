@@ -4,17 +4,20 @@
 <div class="mdui-container" id="content-main">
     <div class="mdui-container">
         <div class="mdui-row" style="min-height: 500px">
+
+            {% if sources %}
             {% for each in sources %}
             <div class="mdui-col-sm-6 mdui-col-md-4" style="margin-top: 25px">
-                <a href="http://127.0.0.1:5000/rss/{{each['id']}}">
+                <a href="http://127.0.0.1:5000/rss/{{each['source_id']}}">
                     <div class="mdui-card">
                         <div class="mdui-card-media">
-                            <img src="{{url_for('static',filename='images/')}}{{each['img']}}"/>
+                            <img src="{{url_for('static',filename='images/')}}{{each['source_img']}}"/>
                             <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
                                 <div class="mdui-card-primary">
                                     <div class="mdui-ca mdui-typo-display-1 rd-primary-title">
-                                        <font size="5">{{each['name']}}—<font size="4">#{{each['tags']}}</font></font><br>
-                                        <font size="3">{{each['desc']}}</font>
+                                        <font size="5">{{each['source_name']}}—<font
+                                                size="4">#{{each['source_tags']}}</font></font><br>
+                                        <font size="3">{{each['source_desc']}}</font>
                                     </div>
                                 </div>
                             </div>
@@ -25,11 +28,23 @@
             {% endfor %}
         </div>
         <div class="mdui-container mdui-center" style="margin-top: 25px;text-align: center">
-            <a href="/page/{{pages[0]}}"
-               class="mdui-btn mdui-btn-raised mdui-ripple mdui-text-color-black mdui-color-theme-accent">上一页</a>
-            <a href="/page/{{pages[1]}}"
-               class="mdui-btn mdui-btn-raised mdui-ripple mdui-text-color-black mdui-color-theme-accent">下一页</a>
+            {% if pages-1 > 0 %}
+                <a href="/page/{{pages-1}}"
+                   class="mdui-btn mdui-btn-raised mdui-ripple mdui-text-color-black mdui-color-theme-accent">上一页</a>
+                <a href="/page/{{pages+1}}"
+                   class="mdui-btn mdui-btn-raised mdui-ripple mdui-text-color-black mdui-color-theme-accent">下一页</a>
+            {% else %}
+                <a href="/page/{{pages+1}}"
+                   class="mdui-btn mdui-btn-raised mdui-ripple mdui-text-color-black mdui-color-theme-accent">下一页</a>
+            {% endif %}
         </div>
+        {% else %}
+        <script>
+            window.location.href='/page/{{pages-1}}'
+        </script>
+        {% endif %}
+
+
     </div>
 </div>
 {% endblock %}
