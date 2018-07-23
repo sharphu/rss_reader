@@ -31,7 +31,7 @@ def index(nums=1):
             "source_url": each.source_url,
             "source_img": each.source_img,
             "source_name": each.source_name,
-            "source_tags": each.source_tags,
+            "source_tag": each.source_tag,
             "source_desc": each.source_desc,
         })
     return render_template('home.html', sources=sources, pages=nums)
@@ -58,7 +58,7 @@ def rss_source():
             "source_url": each.source_url,
             "source_img": each.source_img,
             "source_name": each.source_name,
-            "source_tags": each.source_tags,
+            "source_tag": each.source_tag,
             "source_desc": each.source_desc,
         })
     return render_template('rss_source_manage.html', sources=sources)
@@ -68,5 +68,5 @@ def rss_tag():
     result_data = RssSource.query.all()
     sources = []
     for each in result_data:
-        sources.append(each.source_tags)
+        sources.append(each.source_tag)
     return render_template('rss_tag_manage.html', sources=list(set(sources)))

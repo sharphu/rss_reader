@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{handle_name}}</title>
+    <title>source manage</title>
     <style>
-        td a{
+        td a {
             text-decoration: none;
             color: #2b657e;
         }
     </style>
+    <link rel="stylesheet" href="../static/css/style.css" media="screen" type="text/css"/>
 </head>
 
 <body>
@@ -37,18 +38,81 @@
                 <td>{{item.source_name}}</td>
                 <td>{{item.source_tags}}</td>
                 <td>{{item.source_desc}}</td>
-                <td><a href="#">修改</a>|<a href="#">删除</a></td>
+                <td>
+                    <button mdui-dialog="{target: '#update_source'}">修改</button>|
+                    <button class="rss_delete">删除</button>
+                    <input type="hidden" class="rss_id" value="{{item.source_id}}">
+                </td>
             </tr>
+            <div class="mdui-dialog" id="update_source" style="width: 400px;height: 100px">
+                <div class="mdui-dialog-content">
+                    <div class="container">
+                        <div id="contact">
+                            <h3>Source</h3>
+                            <h4>Adding a source or modifying a source is your freedom</h4>
+                            <fieldset>
+                                <input placeholder="Added URL" type="url" id="update_source_url" required>
+                            </fieldset>
+                            <fieldset>
+                                <input placeholder="Added Name" type="text" id="update_source_name" required>
+                            </fieldset>
+                            <fieldset>
+                                <input placeholder="Added Tag" type="text" id="update_source_tag" required>
+                            </fieldset>
+                            <fieldset>
+                                <input placeholder="Added Description" type="text" id="update_source_desc" required>
+                            </fieldset>
+                            <fieldset>
+                                <button name="submit" type="submit" id="update_contact-submit" value="{{item.source_id}}">
+                                    Submit
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {%endfor%}
             </tbody>
         </table>
-        {% else %}
-        <center style="height: 50px;line-height: 50px">暂无</center>
-        {% endif %}
-
+        <div class="mdui-container">
+            <button class="mdui-btn mdui-btn-icon mdui-color-theme mdui-ripple"
+                    mdui-dialog="{target: '#add_source'}" style=" position: absolute;right: 60px"
+            ><i class="mdui-icon material-icons">add</i>
+            </button>
+            <div class="mdui-dialog" id="add_source" style="width: 400px;height: 100px">
+                <div class="mdui-dialog-content">
+                    <div class="container">
+                        <div id="contact">
+                            <h3>Source</h3>
+                            <h4>Adding a source or modifying a source is your freedom</h4>
+                            <fieldset>
+                                <input placeholder="Added URL" type="url" id="add_source_url" required>
+                            </fieldset>
+                            <fieldset>
+                                <input placeholder="Added Name" type="text" id="add_source_name" required>
+                            </fieldset>
+                            <fieldset>
+                                <input placeholder="Added Tag" type="text" id="add_source_tag" required>
+                            </fieldset>
+                            <fieldset>
+                                <input placeholder="Added Description" type="text" id="add_source_desc" required>
+                            </fieldset>
+                            <fieldset>
+                                <button name="submit" type="submit" id="add_contact-submit">
+                                    Submit
+                                </button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    {% else %}
+    <center style="height: 50px;line-height: 50px">暂无</center>
+    {% endif %}
+
 </div>
-
 </body>
-
 {% endblock %}
+

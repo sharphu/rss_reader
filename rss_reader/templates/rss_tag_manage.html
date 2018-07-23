@@ -10,20 +10,25 @@
 <div class="mdui-container" style="margin-top: 100px;text-align: center">
     <div class="mdui-row" style="min-height: 500px">
         <div class="mdui-textfield" style="width: 80%;margin-bottom: 12px;">
-            <input name="author_name" class="mdui-textfield-input mdui-float-left" style="max-width: 70%" type="text"
-                   placeholder="标签名"/>
-            <button id="authorBtn" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right"
-                    style="min-width: 65px !important;">查询
-            </button>
+            <form action="/api/search" method="post">
+                <input name="source_tag" class="mdui-textfield-input mdui-float-left" style="max-width: 70%"
+                       type="text"
+                       placeholder="标签名"/>
+                <button id="authorBtn" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right"
+                        style="min-width: 65px !important;">查询
+                </button>
+            </form>
         </div>
         <div class="mdui-divider" style="margin-bottom: 10px"></div>
         {% if sources %}
         <div class="author-name-tag" style="text-align: left">
             {%for item in sources%}
             <div class="mdui-chip" style="margin-right: 8px">
-                <span class="mdui-chip-icon mdui-color-blue"><i class="mdui-icon material-icons">face</i></span>
-                <span class="mdui-chip-title">{{item}}</span>
-                <span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>
+                <a href="/api/search?wd={{item}}">
+                    <span class="mdui-chip-icon mdui-color-blue"><i class="mdui-icon material-icons">face</i></span>
+                    <span class="mdui-chip-title">{{item}}</span>
+                    <!--<span class="mdui-chip-delete"><i class="mdui-icon material-icons">cancel</i></span>-->
+                </a>
             </div>
             {%endfor%}
         </div>
@@ -32,7 +37,7 @@
         <div class="author-name-tag">
             <div class="mdui-chip">
                 <span class="mdui-chip-icon mdui-color-blue"><i class="mdui-icon material-icons">face</i></span>
-                <span class="mdui-chip-title">输入作者名, 追踪新书动态</span>
+                <span class="mdui-chip-title">暂无数据，您可以自行添加。</span>
             </div>
         </div>
         {% endif %}

@@ -2,10 +2,10 @@
 # _*_ coding:utf-8 _*_
 
 import os
+import random
 
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, json
 from sqlalchemy import or_
-
 
 from rss_reader.config import Config
 from rss_reader.models import db, RssSource
@@ -19,89 +19,121 @@ bp_api = Blueprint(
 )
 
 
-
-@bp_api.route('/add/<id_img>', methods=['GET', 'POST'])
-def api_add(id_img):
-    if request.method == 'POST':
-        source_url = request.form.get("source_url")
-        source_name = request.form.get("source_name")
-        source_tags = request.form.get("source_tags")
-        source_desc = request.form.get("source_desc")
-
+@bp_api.route('/add', methods=['GET', 'POST'])
+def api_add():
+    try:
+        data = request.get_json()
+        print(data)
+        print(request.json)
+        source_url = data['source_url']
+        source_img = random.randint(1,29)
+        source_name = data['source_name']
+        source_tag = data['source_tag']
+        source_desc = data['source_desc']
         res = RssSource.query.filter_by(source_url=source_url,source_name=source_name).first()
 
         if res == None:
-            data = RssSource(source_url=source_url,
-                             source_img=str(id_img)+'.jpg',
+            add_data = RssSource(source_url=source_url,
+                             source_img=str(source_img) + '.jpg',
                              source_name=source_name,
-                             source_tags=source_tags,
-                             source_desc=source_desc,)
-            db.session.add(data)
+                             source_tag=source_tag,
+                             source_desc=source_desc, )
+            db.session.add(add_data)
             db.session.commit()
-            return render_template('feedback.html', img_name='success.jpg',back_text='恭喜您，添加源成功！')
+            return json.dumps({'status': 1})
         else:
-            return render_template('feedback.html', img_name='existed.jpg',back_text='抱歉，您添加的源已经存在！')
+            return json.dumps({'status': 0})
+    except Exception as e:
+        print(e)
+        return json.dumps({'status': 0})
 
 
+    # if request.method == 'POST':
+    #     source_url = request.form.get("source_url")
+    #     source_img = random.randint(1, 29)
+    #     source_name = request.form.get("source_name")
+    #     source_tag = request.form.get("source_tag")
+    #     source_desc = request.form.get("source_desc")
+    #
+    #     res = RssSource.query.filter_by(source_url=source_url, source_name=source_name).first()
+    #
+    #     if res == None:
+    #         data = RssSource(source_url=source_url,
+    #                          source_img=str(source_img) + '.jpg',
+    #                          source_name=source_name,
+    #                          source_tag=source_tag,
+    #                          source_desc=source_desc, )
+    #         db.session.add(data)
+    #         db.session.commit()
+    #         return json.dumps({'status': 1})
+    #     else:
+    #         return json.dumps({'status': 0})
 
-@bp_api.route('/delete/<source_id>', methods=['GET', 'POST'])
+
+@bp_api.route('/delete/<source_id>', methods=['GET'])
 def api_delete(source_id):
-    if source_id:
-
-        res = RssSource.query.filter_by(source_id=source_id).first()
-
-        if res != None:
+    try:
+        if source_id:
+            res = RssSource.query.filter_by(source_id=int(source_id)).first()
             db.session.delete(res)
             db.session.commit()
-            return render_template('feedback.html', img_name='success.jpg', back_text='恭喜您，源已成功删除！')
+            return json.dumps({'status': 1})
         else:
-            return render_template('feedback.html', img_name = 'Not_found.jpg')
-            # return ('抱歉，此源不存在，无法删除！')
+            return json.dumps({'status': 1})
+    except Exception as e:
+        print(e)
+        return json.dumps({'status': 1})
 
 
-@bp_api.route('/alter/<id_img>', methods=['GET', 'POST'])
-def api_alter(id_img):
-    if request.method == 'POST':
-        source_url = request.form.get("source_url")
-        source_name = request.form.get("source_name")
-        source_tags = request.form.get("source_tags")
-        source_desc = request.form.get("source_desc")
-
-        res = RssSource.query.filter_by(source_id=id_img).first()
+@bp_api.route('/update', methods=['POST'])
+def api_alter():
+    try:
+        data = request.get_json()
+        print(data)
+        print(request.json)
+        source_id = data['source_id']
+        source_url = data['source_url']
+        source_name = data['source_name']
+        source_tag = data['source_tag']
+        source_desc = data['source_desc']
+        res = RssSource.query.filter_by(source_id=source_id).first()
 
         if res != None:
             res.source_url = source_url
             res.source_img = res.source_img
             res.source_name = source_name
-            res.source_tags = source_tags
+            res.source_tag = source_tag
             res.source_desc = source_desc
             db.session.commit()
-            return render_template('feedback.html', img_name='success.jpg',back_text='恭喜您，修改源成功！')
+            return json.dumps({'status': 1})
         else:
-            return render_template('feedback.html',img_name = 'Not_found.jpg')
-            # return ("抱歉，此源不存在！")
-
+            return json.dumps({'status': 0})
+    except Exception as e:
+        print(e)
+        return json.dumps({'status': 0})
 
 
 @bp_api.route('/search', methods=['GET', 'POST'])
 def api_search():
+    source_tag = str(request.args.get('wd', '')).strip()
     if request.method == 'POST':
-        source_url_name = request.form.get("source_url_name")
+        source_tag = request.form.get("source_tag")
+    else:
+        source_tag = source_tag
+    res = RssSource.query.filter(RssSource.source_tag == source_tag).all()
 
-        res = RssSource.query.filter(or_(RssSource.source_name==source_url_name,
-                                         RssSource.source_tags==source_url_name)).all()
+    # res = RssSource.query.filter(or_(RssSource.source_name == source_tag,
+    #                                  RssSource.source_tag == source_tag)).all()
 
-        sources = []
+    sources = []
 
-        if len(res) != 0:
-            for rs in res:
-                sources.append({'id': rs.source_id,
-                                'img': rs.source_img,
-                                'name': rs.source_name,
-                                'tags': rs.source_tags,
-                                'desc': rs.source_desc, })
-            return render_template('rss_search.html', sources=sources)
-        else:
-            return render_template('feedback.html',img_name = 'Not_found.jpg')
-            # return ('抱歉，此源不存在！')
-
+    if len(res) != 0:
+        for rs in res:
+            sources.append({'source_id': rs.source_id,
+                            'source_img': rs.source_img,
+                            'source_name': rs.source_name,
+                            'source_tag': rs.source_tag,
+                            'source_desc': rs.source_desc, })
+        return json.dumps({'status': 1})
+    else:
+        return json.dumps({'status': 0})
