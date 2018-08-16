@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from flask import Flask
 from rss_reader.config import Config
@@ -23,4 +26,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=Config.DEBUG)
+    app.run(host='0.0.0.0', port='8001', debug=Config.DEBUG)

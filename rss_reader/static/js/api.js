@@ -61,7 +61,7 @@ $(document).ready(function () {
                 'source_tag': source_tag,
                 'source_desc': source_desc,
             };
-            console.log(login_pd)
+            // console.log(login_pd)
             $.ajax({
                 type: "post",
                 contentType: "application/json",
@@ -76,6 +76,7 @@ $(document).ready(function () {
             });
         }
     });
+
 
 });
 

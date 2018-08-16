@@ -134,6 +134,7 @@ def api_search():
                             'source_name': rs.source_name,
                             'source_tag': rs.source_tag,
                             'source_desc': rs.source_desc, })
-        return json.dumps({'status': 1})
+        return render_template('rss_source_manage.html',sources=sources)
+        # return json.dumps({'status': 1})
     else:
         return json.dumps({'status': 0})

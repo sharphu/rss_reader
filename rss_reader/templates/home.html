@@ -8,7 +8,7 @@
             {% if sources %}
             {% for each in sources %}
             <div class="mdui-col-sm-6 mdui-col-md-4" style="margin-top: 25px">
-                <a href="http://127.0.0.1:5000/rss/{{each['source_id']}}">
+                <a href="/rss/{{each['source_id']}}" target="_blank">
                     <div class="mdui-card">
                         <div class="mdui-card-media">
                             <img src="{{url_for('static',filename='images/')}}{{each['source_img']}}"/>
